@@ -1,0 +1,53 @@
+@import "styles/font";
+
+.container {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  .item {
+    margin-top: 16px;
+    margin-bottom: 16px;
+    margin-left: 16px;
+    .title {
+      text-align: left;
+      font-weight: bold;
+      font-size: 12px;
+    }
+    .value {
+      margin-top: 12px;
+      text-align: left;
+      font-size: 12px;
+      font-family: $codeFontWindows,$codeFontMacOS;
+      white-space: nowrap;
+      padding-right: 4px;
+      .item_name {
+        display: inline-block;
+        min-width: 34px;
+      }
+      .testonly_value {
+        color: red;
+      }
+      .date_value {
+        color: black;
+      }
+    }
+  }
+  .value_link {
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
+
+.extenal_link {
+  width: 24px;
+  height: 24px;
+  margin-left: 4px;
+  &:hover {
+    cursor: pointer;
+  }
+  > img {
+    width: 14px;
+  }
+}

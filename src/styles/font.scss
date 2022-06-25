@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Maven+Pro&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans+TC&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Lato&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Oswald&display=swap');
+
+$logoFont: "Oswald";
+$symbolFont: "Segoe UI Symbol";
+$mainFontEn: "Roboto";
+$mainFontChinese: "Noto Sans TC";
+$btnFontEn: "Maven Pro";
+$btnFontChinese: "Noto Sans TC";
+$codeFontWindows: "Consolas";
+$codeFontMacOS: "Menlo";
+
+:export {
+  logoFont: $logoFont;
+  symbolFont: $symbolFont;
+  mainFontEn: $mainFontEn;
+  mainFontChinese: $mainFontChinese;
+  btnFontEn: $btnFontEn;
+  btnFontChinese: $btnFontChinese;
+  codeFontWindows: $codeFontWindows;
+  codeFontMacOS: $codeFontMacOS;
+}

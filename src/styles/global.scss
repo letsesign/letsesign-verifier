@@ -1,0 +1,36 @@
+@import '~react-resizable/css/styles.css';
+@import '~@trendmicro/react-buttons/dist/react-buttons.css';
+@import '~@trendmicro/react-dropdown/dist/react-dropdown.css';
+@import '~rsuite-table/dist/css/rsuite-table.css';
+@import '~react-phone-input-2/lib/style.css';
+@import './mixins';
+@import './custom.scss';
+@import './font.scss';
+
+body {
+  position: relative;
+  background-color:  white;
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background: #fff;
+  font-family: $mainFontEn,$mainFontChinese,$symbolFont;
+  font-size: 13px;
+  font-weight: normal;
+  line-height: normal;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+* {
+  margin: 0;
+  padding: 0;
+  &, &::after, &::before {
+    vertical-align: middle;
+  }
+  > p {
+    margin: 0;
+    line-height: inherit;
+  }
+}

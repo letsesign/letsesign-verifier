@@ -9,8 +9,8 @@ import externalLinkImg from 'resources/external-link.png';
 
 import styles from './SidebarView.scss';
 
-export default class SidebarView extends React.Component {
-  static getSigningTimestamp(timestamp) {
+export default class SidebarView extends React.Component<any, any> {
+  static getSigningTimestamp(timestamp: any) {
     const date = new Date(timestamp * 1000);
 
     const year = date.getFullYear();
@@ -22,7 +22,7 @@ export default class SidebarView extends React.Component {
     return `${year}/${month}/${day} ${hours}:${minutes}:${seconds}`;
   }
 
-  constructor(props) {
+  constructor(props: any) {
     super(props);
     this.state = {};
   }
@@ -32,7 +32,7 @@ export default class SidebarView extends React.Component {
     window.open(enclaveCodeURL, '_blank');
   };
 
-  renderEnclaveMagicNumber = (isVerifiedSuccess) => {
+  renderEnclaveMagicNumber = (isVerifiedSuccess: any) => {
     if (isVerifiedSuccess) {
       const { enclaveMagicNumber } = this.props;
       return (
@@ -48,7 +48,7 @@ export default class SidebarView extends React.Component {
     );
   };
 
-  renderEnclaveVersion = (isVerifiedSuccess) => {
+  renderEnclaveVersion = (isVerifiedSuccess: any) => {
     const { enclaveVersion } = this.props;
     const isTestOnly = enclaveVersion === 'TESTONLY';
     const isUnknown = enclaveVersion === 'UNKNOWN';
@@ -84,19 +84,19 @@ export default class SidebarView extends React.Component {
     );
   };
 
-  renderSignerList = (isVerifiedSuccess) => {
+  renderSignerList = (isVerifiedSuccess: any) => {
     if (isVerifiedSuccess) {
       const { signerList } = this.props;
       return (
         <div>
-          {_.map(signerList, (signerInfo, idx) => (
+          {_.map(signerList, (signerInfo, idx: number) => (
             <div key={`signer-${idx + 1}`} className={styles.value} style={{ marginTop: '16px' }}>
               <div style={{ marginTop: '6px' }}>{signerInfo.name}</div>
               <div style={{ marginTop: '6px' }}>{signerInfo.emailAddr}</div>
               {signerInfo.phoneNumber ? <div style={{ marginTop: '6px' }}>{signerInfo.phoneNumber}</div> : ''}
               <div style={{ marginTop: '6px' }}>
                 {`${SidebarView.getSigningTimestamp(signerInfo.signingTime)} (${
-                  idx + 1 < 10 ? `0${idx + 1}` : idx + 1
+                  idx + 1 < 10 ? `0${idx + 1}` : `${idx + 1}`
                 })`}
               </div>
             </div>

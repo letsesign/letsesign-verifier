@@ -26,12 +26,12 @@ const snackbarOptions = {
   }
 };
 
-class Main extends React.Component {
-  pdfNameInputRef;
+class Main extends React.Component<any, any> {
+  pdfNameInputRef: any;
 
-  spfNameInputRef;
+  spfNameInputRef: any;
 
-  constructor(props) {
+  constructor(props: any) {
     super(props);
     this.pdfNameInputRef = React.createRef();
     this.spfNameInputRef = React.createRef();
@@ -74,7 +74,7 @@ class Main extends React.Component {
     history.push(routes.examine);
   };
 
-  handlePdfSelected = (evt) => {
+  handlePdfSelected = (evt: any) => {
     this.setState({
       pdf: {
         name: evt.target.files[0].name,
@@ -83,7 +83,7 @@ class Main extends React.Component {
     });
   };
 
-  handleSpfSelected = (evt) => {
+  handleSpfSelected = (evt: any) => {
     this.setState({
       spf: {
         name: evt.target.files[0].name,

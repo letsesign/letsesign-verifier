@@ -14,7 +14,7 @@ const render = () => {
   ReactDOM.render(<App history={history} />, MOUNT_NODE);
 };
 
-if (module.hot) {
+if (module.hot && MOUNT_NODE) {
   module.hot.accept('App', () => {
     ReactDOM.unmountComponentAtNode(MOUNT_NODE);
     render();

@@ -5,7 +5,7 @@ import SnackbarProvider from 'react-simple-snackbar';
 import { Helmet } from 'react-helmet';
 import { isMobile, isAndroid, isIOS } from 'react-device-detect';
 import loadable from '@loadable/component';
-import _ from 'lodash';
+// import _ from 'lodash';
 
 import { routes } from 'common/constants';
 import LoadingIndicator from 'components/LoadingIndicator';
@@ -26,16 +26,18 @@ const Examine = loadable(() => import('containers/Examine/index'), {
   fallback: isLoading
 });
 
-export default function App({ history }) {
+export default function App({ history }: { history: any }) {
   const [locale, setLocale] = useState(navigator.language);
   const localeDataMap = {
     'en-US': en,
     'zh-TW': zhTW
   };
-  let lang = locale;
+  const lang = locale === 'zh-TW' ? 'zh-TW' : 'en-US';
+  /*
   if (!_.includes(Object.keys(localeDataMap), locale)) {
     lang = 'en-US';
   }
+  */
   const currentLocale = lang;
   return (
     <IntlProvider locale={lang} key={lang} defaultLocale="en-US" messages={localeDataMap[lang]}>

@@ -11,8 +11,8 @@ import { FormattedMessage } from 'react-intl';
 import { routes, fitScaleOption, scaleOptions } from 'common/constants';
 import styles from './ToolbarView.scss';
 
-export default class ToolbarView extends React.Component {
-  constructor(props) {
+export default class ToolbarView extends React.Component<any, any> {
+  constructor(props: any) {
     super(props);
     this.state = {
       selectedScaleIdx: fitScaleOption.key
@@ -52,7 +52,7 @@ export default class ToolbarView extends React.Component {
   };
   */
 
-  handleSelectScaleMenu = (evtKey) => {
+  handleSelectScaleMenu = (evtKey: any) => {
     const { onSelectScale } = this.props;
     this.setState({
       selectedScaleIdx: evtKey.toString()
@@ -61,7 +61,7 @@ export default class ToolbarView extends React.Component {
   };
 
   // eslint-disable-next-line react/no-unused-class-component-methods
-  handleUpdateScale = (isMinus) => {
+  handleUpdateScale = (isMinus: any) => {
     const { onUpdateScale } = this.props;
     this.setState({
       selectedScaleIdx: '0'
@@ -69,7 +69,7 @@ export default class ToolbarView extends React.Component {
     onUpdateScale(isMinus);
   };
 
-  isDropdownItemActive = (value, idx) => {
+  isDropdownItemActive = (value: any, idx: any) => {
     const { currentScale } = this.props;
     const { selectedScaleIdx } = this.state;
     if (value.toFixed(2) === ((currentScale * 100) / 100).toFixed(2)) {
@@ -102,7 +102,7 @@ export default class ToolbarView extends React.Component {
     history.push(routes.init);
   };
 
-  static renderScaleItem(name, active) {
+  static renderScaleItem(name: any, active: any) {
     if (name === 'examine.dropdown.fitToWidth') {
       return (
         <div className={styles.menu_item}>

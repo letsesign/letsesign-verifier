@@ -9,8 +9,8 @@ import Header from './components/Header';
 import Main from './components/Main';
 import styles from './index.scss';
 
-class Verify extends React.Component {
-  constructor(props) {
+class Verify extends React.Component<any, any> {
+  constructor(props: any) {
     super(props);
     this.state = {};
   }

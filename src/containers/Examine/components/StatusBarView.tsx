@@ -7,7 +7,7 @@ import oCertifiedPng from 'resources/o-certified.png';
 import xCertifiedPng from 'resources/x-certified.png';
 import styles from './StatusBarView.scss';
 
-export default class StatusBarView extends React.Component {
+export default class StatusBarView extends React.Component<any, any> {
   static renderCertifiedView = () => {
     return (
       <div className={styles.certified_view}>

@@ -4,7 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
-  entry: ['./src/index.jsx'],
+  entry: ['./src/index.tsx'],
   devtool: 'source-map',
   output: {
     filename: '[contenthash].js',
@@ -13,7 +13,7 @@ module.exports = {
     path: path.resolve(__dirname, './build/')
   },
   resolve: {
-    extensions: ['.js', '.jsx'],
+    extensions: ['.js', '.jsx', '.ts', '.tsx'],
     modules: ['src', 'node_modules'],
     fallback: {
       url: false,
@@ -50,23 +50,23 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /.js$/,
+        test: /.ts$/,
         exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['@babel/preset-react', '@babel/preset-env'],
+            presets: ['@babel/preset-typescript', '@babel/preset-react', '@babel/preset-env'],
             plugins: ['@babel/plugin-transform-runtime']
           }
         }
       },
       {
-        test: /.jsx$/,
+        test: /.tsx$/,
         exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['@babel/preset-react', '@babel/preset-env'],
+            presets: ['@babel/preset-typescript', '@babel/preset-react', '@babel/preset-env'],
             plugins: ['@babel/plugin-transform-runtime']
           }
         }

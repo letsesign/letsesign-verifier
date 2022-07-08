@@ -2,8 +2,8 @@ import React from 'react';
 
 import styles from './Header.scss';
 
-export default class Header extends React.Component {
-  constructor(props) {
+export default class Header extends React.Component<any, any> {
+  constructor(props: any) {
     super(props);
     this.state = {};
   }

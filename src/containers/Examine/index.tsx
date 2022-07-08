@@ -28,8 +28,8 @@ const snackbarOptions = {
   }
 };
 
-class Examine extends React.Component {
-  static readFileFromBlobUrlAsync = async (fileUrl) =>
+class Examine extends React.Component<any, any> {
+  static readFileFromBlobUrlAsync = async (fileUrl: string) =>
     new Promise((resolve, reject) => {
       const xhr = new XMLHttpRequest();
       xhr.responseType = 'blob';
@@ -48,7 +48,7 @@ class Examine extends React.Component {
       xhr.send();
     });
 
-  static verifyPdfApi = async (pdfBufferB64, spfDataB64) => {
+  static verifyPdfApi = async (pdfBufferB64: any, spfDataB64: any) => {
     const apiEndpoint = process.env.NODE_ENV === 'development' ? 'http://localhost/verify-pdf/' : '/verify-pdf/';
     try {
       const fetchResult = await fetch(apiEndpoint, {
@@ -66,30 +66,34 @@ class Examine extends React.Component {
       }
       const apiResp = await fetchResult.json();
       return apiResp;
-    } catch (error) {
+    } catch (error: any) {
       return {
         error: `Error: ${error.message}`
       };
     }
   };
 
-  static verifyPdfProc = async (spfFileUrl, pdfFileUrl) => {
-    let result = null;
-    const spfDataB64 = base64js.fromByteArray(new Uint8Array(await Examine.readFileFromBlobUrlAsync(spfFileUrl)));
-    const pdfBufferB64 = base64js.fromByteArray(new Uint8Array(await Examine.readFileFromBlobUrlAsync(pdfFileUrl)));
-    const verifier = new Verifier();
-    result = await verifier.semiVerify(pdfBufferB64, spfDataB64);
+  static verifyPdfProc = async (spfFileUrl: string, pdfFileUrl: string) => {
+    let result: any = null;
+    const spfDataB64 = base64js.fromByteArray(
+      new Uint8Array((await Examine.readFileFromBlobUrlAsync(spfFileUrl)) as any)
+    );
+    const pdfBufferB64 = base64js.fromByteArray(
+      new Uint8Array((await Examine.readFileFromBlobUrlAsync(pdfFileUrl)) as any)
+    );
+    // const verifier = new Verifier();
+    result = await Verifier.semiVerify(pdfBufferB64, spfDataB64);
     if (result.error !== null && result.error !== undefined) {
       throw Error(result.error);
     }
     return result;
   };
 
-  pdfViewRef;
+  pdfViewRef: any;
 
-  constructor(props) {
+  constructor(props: any) {
     super(props);
-    const procPdf = JSON.parse(window.sessionStorage.getItem('procPdf'));
+    const procPdf = JSON.parse(window.sessionStorage.getItem('procPdf') as string);
 
     let hasValidData = true;
     if (procPdf === null || procPdf === undefined) {
@@ -109,12 +113,12 @@ class Examine extends React.Component {
   }
 
   componentDidMount() {
-    const spf = JSON.parse(window.sessionStorage.getItem('spf'));
-    const pdfProc = JSON.parse(window.sessionStorage.getItem('procPdf'));
+    const spf = JSON.parse(window.sessionStorage.getItem('spf') as string);
+    const pdfProc = JSON.parse(window.sessionStorage.getItem('procPdf') as string);
     this.verifyPdfFunc(spf.fileUrl, pdfProc.fileUrl);
   }
 
-  verifyPdfFunc = async (spfFileUrl, pdfFileUrl) => {
+  verifyPdfFunc = async (spfFileUrl: string, pdfFileUrl: string) => {
     try {
       const result = await Examine.verifyPdfProc(spfFileUrl, pdfFileUrl);
       this.setState({
@@ -122,7 +126,7 @@ class Examine extends React.Component {
         isCertifiedLeDoc: true,
         isProcessing: false
       });
-    } catch (error) {
+    } catch (error: any) {
       this.setState({
         errorMsg: error.message,
         isCertifiedLeDoc: false,
@@ -133,7 +137,7 @@ class Examine extends React.Component {
 
   /* The following method is kept for review only */
   // eslint-disable-next-line class-methods-use-this
-  handlePdfLoadSuccess = (pdfDoc) => {
+  handlePdfLoadSuccess = (pdfDoc: any) => {
     if (!pdfDoc) {
       // eslint-disable-next-line no-console
       console.log('Invalid pdfDoc');
@@ -145,7 +149,7 @@ class Examine extends React.Component {
     history.push(routes.verify);
   };
 
-  handleUpdateScale = (isMinus) => {
+  handleUpdateScale = (isMinus: boolean) => {
     const { selectedScale } = this.state;
     let scale = selectedScale;
     if (selectedScale === 0 && this.pdfViewRef && this.pdfViewRef.current) {
@@ -175,7 +179,7 @@ class Examine extends React.Component {
     });
   };
 
-  handleScaleMenuItemSelected = (idx) => {
+  handleScaleMenuItemSelected = (idx: number) => {
     this.setState({
       selectedScale: idx > scaleOptions.length - 1 ? fitScaleOption.value : scaleOptions[idx].value
     });

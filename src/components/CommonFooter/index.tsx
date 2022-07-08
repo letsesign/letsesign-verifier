@@ -6,13 +6,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import styles from './index.scss';
 
-export default class CommonFooter extends React.Component {
-  handleLocaleChanged = (language) => {
+export default class CommonFooter extends React.Component<any, any> {
+  handleLocaleChanged = (language: string) => {
     const { setLocale } = this.props;
     setLocale(language);
   };
 
-  static getLanaugeDisp = (locale) => {
+  static getLanaugeDisp = (locale: string) => {
     if (locale === 'en-US') {
       return 'English (US)';
     }

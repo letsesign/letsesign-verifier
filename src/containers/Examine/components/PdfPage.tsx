@@ -4,10 +4,10 @@ import VisibilitySensor from 'react-visibility-sensor';
 
 import styles from './PdfPage.scss';
 
-export default class PdfPage extends React.Component {
-  pageRef;
+export default class PdfPage extends React.Component<any, any> {
+  pageRef: any;
 
-  constructor(props) {
+  constructor(props: any) {
     super(props);
     this.pageRef = React.createRef();
     this.state = {
@@ -27,7 +27,7 @@ export default class PdfPage extends React.Component {
     return retScale;
   };
 
-  // eslint-disable-next-line react/no-unused-class-component-methods
+  /*
   scrollIntoView = () => {
     const behavior = 'smooth';
     const options = { behavior };
@@ -36,6 +36,7 @@ export default class PdfPage extends React.Component {
       element.scrollIntoView(options);
     }
   };
+  */
 
   render() {
     const { pageNumber, scale, width, oWidth, oHeight } = this.props;
@@ -43,7 +44,7 @@ export default class PdfPage extends React.Component {
     return (
       <VisibilitySensor
         partialVisibility
-        onChange={(isVisible) => {
+        onChange={(isVisible: boolean) => {
           this.setState({ visibility: isVisible });
         }}
       >

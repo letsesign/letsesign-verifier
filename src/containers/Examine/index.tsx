@@ -2,7 +2,7 @@ import React from 'react';
 import { withSnackbar } from 'react-simple-snackbar';
 import base64js from 'base64-js';
 
-import { Verifier } from 'common/verifier';
+import { semiVerify } from 'common/verifier';
 import { routes, fitScaleOption, scaleOptions } from 'common/constants';
 import CommonFooter from 'components/CommonFooter';
 
@@ -81,8 +81,7 @@ class Examine extends React.Component<any, any> {
     const pdfBufferB64 = base64js.fromByteArray(
       new Uint8Array((await Examine.readFileFromBlobUrlAsync(pdfFileUrl)) as any)
     );
-    // const verifier = new Verifier();
-    result = await Verifier.semiVerify(pdfBufferB64, spfDataB64);
+    result = await semiVerify(pdfBufferB64, spfDataB64);
     if (result.error !== null && result.error !== undefined) {
       throw Error(result.error);
     }

@@ -1,6 +1,6 @@
 {
   "name": "letsesign-verifier",
-  "version": "1.4.0716",
+  "version": "1.4.0717",
   "description": "Let's eSign Verifier",
   "main": "index.js",
   "scripts": {

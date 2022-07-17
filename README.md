@@ -22,6 +22,7 @@ If you are a developer, you can build Let's eSign Verifier directly from the sou
    ```
    git clone https://github.com/letsesign/letsesign-verifier.git
    cd letsesign-verifier
+   unzip pdfjs-2.14.305-dist-patched.zip -d public/pdfjs/
    npm run build
    ```
 
@@ -30,6 +31,7 @@ Alternatively, you can build and run the container which hosts Let's eSign Verif
 ```
 git clone https://github.com/letsesign/letsesign-verifier.git
 cd letsesign-verifier
+unzip pdfjs-2.14.305-dist-patched.zip -d public/pdfjs/
 docker build -t letsesign-verifier .
 docker run -d -p 80:80 letsesign-verifier
 ```

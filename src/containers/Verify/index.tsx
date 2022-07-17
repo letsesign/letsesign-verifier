@@ -3,7 +3,6 @@ import { Switch, Route } from 'react-router-dom';
 import { isMobile, isAndroid, isIOS } from 'react-device-detect';
 
 import { routes } from 'common/constants';
-import CommonFooter from 'components/CommonFooter';
 
 import Header from './components/Header';
 import Main from './components/Main';
@@ -16,6 +15,7 @@ class Verify extends React.Component<any, any> {
   }
 
   render() {
+    // eslint-disable-next-line no-unused-vars
     const { history, appVersion, serviceName } = this.props;
     if (isMobile || isAndroid || isIOS) {
       history.push(routes.init);
@@ -29,7 +29,6 @@ class Verify extends React.Component<any, any> {
             <Route path={routes.verify} component={Main} />
           </Switch>
         </div>
-        <CommonFooter {...this.props} appVersion={appVersion} />
       </div>
     );
   }

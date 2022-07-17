@@ -2,6 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   entry: ['./src/index.tsx'],
@@ -29,6 +30,9 @@ module.exports = {
     modules: true
   },
   plugins: [
+    new CopyPlugin({
+      patterns: [{ from: 'public/pdfjs', to: 'pdfjs' }]
+    }),
     new HtmlWebpackPlugin({
       template: 'public/index.html',
       favicon: 'public/favicon.ico',

@@ -43,7 +43,9 @@ export default class SidebarView extends React.Component<any, any> {
     }
     return (
       <div className={styles.value}>
-        <span className={styles.testonly_value}>UNKNOWN</span>
+        <span className={styles.unknown_value}>
+          <FormattedMessage id="examine.text.unknown" />
+        </span>
       </div>
     );
   };
@@ -55,21 +57,25 @@ export default class SidebarView extends React.Component<any, any> {
     if (!isVerifiedSuccess) {
       return (
         <div className={styles.value}>
-          <span className={styles.testonly_value}>UNKNOWN</span>
+          <span className={styles.unknown_value}>
+            <FormattedMessage id="examine.text.unknown" />
+          </span>
         </div>
       );
     }
     if (isTestOnly) {
       return (
         <div className={styles.value}>
-          <span className={styles.testonly_value}>TESTONLY</span>
+          <span className={styles.unknown_value}>Test Only</span>
         </div>
       );
     }
     if (isUnknown) {
       return (
         <div className={styles.value}>
-          <span className={styles.testonly_value}>UNKNOWN</span>
+          <span className={styles.unknown_value}>
+            <FormattedMessage id="examine.text.unknown" />
+          </span>
         </div>
       );
     }
@@ -106,7 +112,9 @@ export default class SidebarView extends React.Component<any, any> {
     }
     return (
       <div className={styles.value}>
-        <span className={styles.testonly_value}>UNKNOWN</span>
+        <span className={styles.unknown_value}>
+          <FormattedMessage id="examine.text.unknown" />
+        </span>
       </div>
     );
   };

@@ -56,7 +56,13 @@ export default class StatusBarView extends React.Component<any, any> {
             <img src={xCertifiedPng} />
           </div>
           <div className={styles.text}>
-            <p>{isErrorMsg}</p>
+            <p>
+              {isErrorMsg === 'Error: Invalid eSignature or Invalid Attestation Document' ? (
+                <FormattedMessage id="examine.text.semiError" />
+              ) : (
+                isErrorMsg
+              )}
+            </p>
           </div>
         </div>
         <div className={styles.close_button_wrapper}>

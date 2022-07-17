@@ -19,6 +19,8 @@ const en = {
   'examine.text.enclaveVersion': 'Enclave Version',
   'examine.text.signerList': 'Signer List',
   'examine.text.close': 'Close',
+  'examine.text.unknown': 'Unknown',
+  'examine.text.semiError': 'Error: invalid electronic signature or invalid signing proof',
   'text.notSupportedBrowsers': 'This web app requires desktop browsers to run',
   'text.poweredBy': 'Powered by ',
 };

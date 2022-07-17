@@ -30,6 +30,9 @@ class Examine extends React.Component<any, any> {
     new Promise((resolve, reject) => {
       const xhr = new XMLHttpRequest();
       xhr.responseType = 'blob';
+      xhr.onerror = () => {
+        reject();
+      };
       xhr.onload = () => {
         const fileObj = xhr.response;
         const fileReader = new FileReader();
@@ -47,13 +50,19 @@ class Examine extends React.Component<any, any> {
 
   static verifyPdfProc = async (spfFileUrl: string, pdfFileUrl: string) => {
     let result: any = null;
-    const spfDataB64 = base64js.fromByteArray(
-      new Uint8Array((await Examine.readFileFromBlobUrlAsync(spfFileUrl)) as any)
-    );
-    const pdfBufferB64 = base64js.fromByteArray(
-      new Uint8Array((await Examine.readFileFromBlobUrlAsync(pdfFileUrl)) as any)
-    );
-    result = await semiVerify(pdfBufferB64, spfDataB64);
+    try {
+      const spfDataB64 = base64js.fromByteArray(
+        new Uint8Array((await Examine.readFileFromBlobUrlAsync(spfFileUrl)) as any)
+      );
+      const pdfBufferB64 = base64js.fromByteArray(
+        new Uint8Array((await Examine.readFileFromBlobUrlAsync(pdfFileUrl)) as any)
+      );
+      result = await semiVerify(pdfBufferB64, spfDataB64);
+    } catch {
+      result = {
+        error: 'Failed to read/verify'
+      };
+    }
     if (result.error !== null && result.error !== undefined) {
       throw Error(result.error);
     }
@@ -61,23 +70,14 @@ class Examine extends React.Component<any, any> {
   };
 
   constructor(props: any) {
-    let isReload = false;
     super(props);
     const procPdf = JSON.parse(window.sessionStorage.getItem('procPdf') as string);
-    //  Hack to handle reload
-    if (window.performance) {
-      if (performance.navigation.type === 1) {
-        isReload = true;
-      }
-    }
+
     let hasValidData = true;
     if (procPdf === null || procPdf === undefined) {
       hasValidData = false;
     }
     this.state = {
-      // pdfName: procPdf ? procPdf.name : '',
-      // pdfData: procPdf ? procPdf.fileUrl : '',
-      isReload,
       hasValidData,
       isCertifiedLeDoc: false,
       certifiedPdfInfo: null,
@@ -87,15 +87,9 @@ class Examine extends React.Component<any, any> {
   }
 
   componentDidMount() {
-    const { isReload } = this.state;
-    if (isReload) {
-      const { history } = this.props;
-      history.push(routes.verify);
-    } else {
-      const spf = JSON.parse(window.sessionStorage.getItem('spf') as string);
-      const pdfProc = JSON.parse(window.sessionStorage.getItem('procPdf') as string);
-      this.verifyPdfFunc(spf.fileUrl, pdfProc.fileUrl);
-    }
+    const spf = JSON.parse(window.sessionStorage.getItem('spf') as string);
+    const pdfProc = JSON.parse(window.sessionStorage.getItem('procPdf') as string);
+    this.verifyPdfFunc(spf.fileUrl, pdfProc.fileUrl);
   }
 
   verifyPdfFunc = async (spfFileUrl: string, pdfFileUrl: string) => {
@@ -107,11 +101,16 @@ class Examine extends React.Component<any, any> {
         isProcessing: false
       });
     } catch (error: any) {
-      this.setState({
-        errorMsg: error.message,
-        isCertifiedLeDoc: false,
-        isProcessing: false
-      });
+      if (error.message === 'Failed to read/verify') {
+        const { history } = this.props;
+        history.push(routes.verify);
+      } else {
+        this.setState({
+          errorMsg: error.message,
+          isCertifiedLeDoc: false,
+          isProcessing: false
+        });
+      }
     }
   };
 
@@ -163,7 +162,7 @@ class Examine extends React.Component<any, any> {
             )}
           </div>
           <div className={styles.content_pdf}>
-            <iframe id="viewer" title="pdfjsView" width="100%" src="./pdfjs/web/viewer.html" />
+            <iframe id="viewer" title="pdfjsView" width="100%" src="./pdfjs/web/viewer.html#0" />
           </div>
         </div>
       </div>

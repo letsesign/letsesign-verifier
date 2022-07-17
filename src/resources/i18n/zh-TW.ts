@@ -19,6 +19,8 @@ const zhTW = {
   'examine.text.enclaveVersion': '可信執行環境 版本',
   'examine.text.signerList': '簽署人名單',
   'examine.text.close': '關閉',
+  'examine.text.unknown': '不詳',
+  'examine.text.semiError': '錯誤：不合法的電子簽名或不合法的簽名佐證',
   'text.notSupportedBrowsers': '此網路應用程式僅支援桌面瀏覽器',
   'text.poweredBy': 'Powered by ',
 };

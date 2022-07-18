@@ -162,7 +162,11 @@ class Examine extends React.Component<any, any> {
             )}
           </div>
           <div className={styles.content_pdf}>
-            <iframe id="viewer" title="pdfjsView" width="100%" src="./pdfjs/web/viewer.html#0" />
+            {isProcessing ? (
+              ''
+            ) : (
+              <iframe id="viewer" title="pdfjsView" width="100%" src="./pdfjs/web/viewer.html#page=1" />
+            )}
           </div>
         </div>
       </div>

@@ -5,7 +5,7 @@ Let's eSign Verifier is an open-source, client-side-only, static web app for ver
 https://verifier.letsesign.org/
 
 <p align="left">
-<img src="https://user-images.githubusercontent.com/2587360/179981667-d2226b4b-69c1-4d56-a6b1-d43a137cf308.png" width="46%">
+<img src="https://user-images.githubusercontent.com/2587360/179999793-4008d989-8324-4d50-aa3e-531e2611a417.png" width="46%">
 <img src="https://user-images.githubusercontent.com/2587360/179714911-226906b5-1909-4646-90d0-00687e27034a.png" width="46%">
 </p>
 
